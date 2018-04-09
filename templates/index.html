@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Python App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .summary-block{
+        background-color: #f1f1f1;
+        margin : 10px;
+        min-height: 100px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 16px;
+        padding: 10px;
+    }
+    .side{
+        float: right;
+        background-color: #fff;
+        color: coral;
+        margin: 10px;
+        padding: 5px;
+    }
+    .flex-body{
+        background-color: coral;
+        padding: 15px;
+    }
+    .heading{
+        margin: 30px 0px;
+        float: left;
+    }
+    .risks{
+        margin: 20px;
+    }
+    .bg-4 { 
+      background-color: #2f2f2f;
+      color: #fff;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Emplay</a>
+    </div>
+  </div>
+</nav>
+  
+<div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="summary-block">
+                <h1> {{ child_accounts }}<br></h1>
+                CHILD ACCOUNTS
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-block">
+                <h1>{{ accounts_won }}<br></h1>
+                ACCOUNTS WON
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-block">
+                <h1>{{ high_potential_accounts }}<br></h1>
+                HIGH POTENTIAL ACCOUNTS
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-block">
+                <h1>{{ high_pipeline_accounts }}<br></h1>
+                HIGH PIPELINE ACCOUNTS
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p>* All the account references  are for child accounts</p>
+    {% for account in account_risk_data %}
+    <div class="flex-body">
+            <div class="side">High Potential</div>
+            <div class="side">High Pipeline</div>
+            <h4 style="color:#fff;"> Account Name : {{ account.account_name }}</h4>
+            <h4 style="color:#fff;"> End Customer : {{ account.customer_name }}</h4>     
+    </div>
+    <div class="heading">
+        <h4>Account Risk(s)</h4>
+    </div>
+    <div class="risks">
+        <ul style="margin-left: 50%">
+            {% for risk in account.risk %}
+                <li>{{ risk }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+<footer class="container-fluid bg-4 text-center">
+    <p>Made By <a href="https://github.com/parvez301">Parvez Alam</a></p> 
+</footer>
+</body>
+</html>
